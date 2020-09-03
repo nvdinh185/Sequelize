@@ -16,12 +16,16 @@ const User = sequelize.define("user", {
 
 (async () => {
     await sequelize.sync({ force: true });
-    // Code here
-    const jane = User.build({ name: "Jane" });
-    console.log(jane instanceof User); // true
-    console.log(jane.name); // "Jane"
+    const jane = await User.create({ name: "Jane", age: 100 });
+    await jane.increment('age', { by: 2 }); // tăng age lên 2
+    await jane.increment('age');// tăng age lên 1
 
-    await jane.save();
-    console.log('Jane was saved to the database!');
+    const jane2 = await User.create({ name: "Jane", age: 100, cash: 5000 });
+    await jane2.increment({
+        'age': 2,// tăng age lên 2
+        'cash': 100// tăng lên 100
+    });
+
+    await jane2.increment(['age', 'cash'], { by: 3 });// tăng age và cash đồng thời lên 3
     await sequelize.close();
 })();
