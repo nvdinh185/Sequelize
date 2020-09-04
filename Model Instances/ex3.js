@@ -1,4 +1,4 @@
-const { Sequelize, Model, DataTypes } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: './database-sinhvien.db'
