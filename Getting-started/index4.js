@@ -1,19 +1,22 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: './database-sinhvien.db'
+    storage: './my-database.db'
 });
 
 class User extends Model { }
 User.init({
     username: DataTypes.STRING,
     birthday: DataTypes.DATE
-}, { sequelize, modelName: 'user' });
+}, {
+    sequelize,
+    modelName: 'new' // tên bảng
+});
 
 (async () => {
-    await sequelize.sync();
+    await User.sync({ force: true });
     const jane = await User.create({
-        username: 'janedoe',
+        username: 'jane doe',
         birthday: new Date(1980, 6, 20)
     });
     console.log(jane.toJSON());

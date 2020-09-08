@@ -4,20 +4,16 @@ const sequelize = new Sequelize({
     storage: './my-database.db'
 });
 
-const user = sequelize.define("user", {
-    name: DataTypes.TEXT,
-    age: DataTypes.INTEGER
+const user = sequelize.define("", {
+    name: DataTypes.TEXT
 }, {
-    timestamps: false // Không cho tạo cột createdAt và updatedAt
+    tableName: 'employees' // tên bảng
 });
 
 (async () => {
-    await user.sync({ force: true }); // ghi đè lên bảng cũ (nếu có)
+    await user.sync();
 
     const jane = user.build({ name: "Jane" });
-    console.log(jane instanceof user); // true
-    console.log(jane.name); // "Jane"
-
     await jane.save();
     console.log('Jane was saved to the database!');
     await sequelize.close();

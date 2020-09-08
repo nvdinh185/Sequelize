@@ -1,10 +1,10 @@
-const { Sequelize, Model, DataTypes } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: './database-sinhvien.db'
+    storage: './my-database.db'
 });
 
-const User = sequelize.define("user", {
+const user = sequelize.define("user", {
     name: DataTypes.TEXT,
     favoriteColor: {
         type: DataTypes.TEXT,
@@ -12,15 +12,17 @@ const User = sequelize.define("user", {
     },
     age: DataTypes.INTEGER,
     cash: DataTypes.INTEGER
+}, {
+    freezeTableName: true
 });
 
 (async () => {
-    await sequelize.sync({ force: true });
-    const jane = await User.create({ name: "Jane", age: 100 });
-    await jane.increment('age', { by: 2 }); // tăng age lên 2
-    await jane.increment('age');// tăng age lên 1
+    await user.sync({ force: true });
+    const jane1 = await user.create({ name: "Jane1", age: 100 });
+    await jane1.increment('age', { by: 2 }); // tăng age lên 2
+    await jane1.increment('age');// tăng age lên 1
 
-    const jane2 = await User.create({ name: "Jane", age: 100, cash: 5000 });
+    const jane2 = await user.create({ name: "Jane2", age: 100, cash: 5000 });
     await jane2.increment({
         'age': 2,// tăng age lên 2
         'cash': 100// tăng lên 100

@@ -20,7 +20,7 @@ User.init({
 });
 
 (async () => {
-  await sequelize.sync();
+  await User.sync();
   // Create a new user
   const jane = await User.create({ firstName: "Jane", lastName: "Doe" });
   console.log("Jane's auto-generated ID:", jane.id);
@@ -38,7 +38,7 @@ User.init({
 
   // Applying WHERE clauses
   let usersWhere = await User.findAll({
-    where: { id: 2 }
+    where: { id: 1 }
   });
   console.log(JSON.stringify(usersWhere, null, 2));
 
@@ -53,7 +53,7 @@ User.init({
   // });
 
   let res = await sequelize.query("SELECT * FROM `User`");
-  console.log(res);
+  console.log(res[0]);
 
   await sequelize.close();
 })();

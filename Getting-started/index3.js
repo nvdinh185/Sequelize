@@ -2,24 +2,24 @@ const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: './database-sinhvien.db'
+    storage: './my-database.db'
 });
 
-sequelize.authenticate().then(() => {
-    console.log("Success!");
-    var News = sequelize.define('likes', {
-        title: {
-            type: Sequelize.STRING
-        },
-        content: {
+(async () => {
+    await sequelize.authenticate();
+    console.log("Kết nối thành công!");
+
+    let News = sequelize.define('my_table', {
+        name: {
             type: Sequelize.STRING
         }
     }, {
         timestamps: false
     });
-    News.sync({ force: true }).then(res => {
-        console.log('Item table created successfully', res);
-    });
-}).catch((err) => {
-    console.log(err);
-});
+
+    await News.sync({ force: true });
+    console.log('Tạo bảng thành công!');
+
+    await sequelize.close();
+    console.log("Đã đóng thành công!");
+})();

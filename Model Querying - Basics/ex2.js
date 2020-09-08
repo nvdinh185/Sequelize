@@ -21,7 +21,7 @@ User.init({
 });
 
 (async () => {
-  await sequelize.sync({ force: true });
+  await User.sync({ force: true });
 
   const user = await User.create({
     username: 'alice123',
@@ -30,7 +30,7 @@ User.init({
   console.log(user.username); // 'alice123'
   console.log(user.isAdmin); // undefined (đã lưu trong csdl là false)
 
-  // Specifying attributes for SELECT queries
+  // Specifying attributes for SELECT queries (as "name")
   let username = await User.findAll({
     attributes: [['username', 'ten']]
   });
