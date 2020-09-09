@@ -14,11 +14,11 @@ const user = sequelize.define("user", {
 (async () => {
     await user.sync({ force: true }); // ghi đè lên bảng cũ (nếu có)
 
-    const jane = user.build({ name: "Jane" });
+    const jane = user.build({ name: "Jane" }); // tạo một bản ghi
     console.log(jane instanceof user); // true
     console.log(jane.name); // "Jane"
 
-    await jane.save();
+    await jane.save(); // lưu bản ghi vào cơ sở dữ liệu
     console.log('Jane was saved to the database!');
     await sequelize.close();
 })();

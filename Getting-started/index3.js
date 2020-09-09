@@ -9,7 +9,7 @@ const sequelize = new Sequelize({
     await sequelize.authenticate();
     console.log("Kết nối thành công!");
 
-    let News = sequelize.define('my_table', {
+    let News = sequelize.define('new', {
         name: {
             type: Sequelize.STRING
         }

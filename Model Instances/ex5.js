@@ -13,7 +13,7 @@ const user = sequelize.define("user", {
     age: DataTypes.INTEGER,
     cash: DataTypes.INTEGER
 }, {
-    freezeTableName: true
+    freezeTableName: true // ép buộc tên trong csdl trùng với tên trong file này
 });
 
 (async () => {

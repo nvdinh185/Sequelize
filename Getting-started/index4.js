@@ -10,7 +10,7 @@ User.init({
     birthday: DataTypes.DATE
 }, {
     sequelize,
-    modelName: 'new' // tên bảng
+    modelName: 'new' // tên bảng (Nếu không truyền thì lấy tên bảng là Users)
 });
 
 (async () => {

@@ -29,7 +29,7 @@ const person = sequelize.define("person", {
 
     console.log('Jane was saved to the database!');
 
-    await child.drop();
+    await child.drop(); //xóa bảng children trong csdl
     console.log("child table dropped!");
 
     await sequelize.close();
