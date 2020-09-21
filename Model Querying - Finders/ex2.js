@@ -20,10 +20,12 @@ User.init({
 
 (async () => {
     await User.sync();
+    // await User.sync({ force: true });
     // Create a new user
     // const user1 = await User.create({ username: "sdepold" });
     // console.log("Jane's auto-generated ID:", user1.id);
 
+    // Tìm hoặc tạo: Tìm trong table xem đã có bản ghi thỏa mãn chưa? nếu chưa có thì tạo
     const [user2, created] = await User.findOrCreate({
         where: { username: 'sdepold' },
         defaults: {
@@ -37,6 +39,7 @@ User.init({
         console.log(user2.job); // This will certainly be 'Technical Lead JavaScript'
     }
 
+    // Tìm và đếm tất cả số bản ghi
     const { count, rows } = await User.findAndCountAll({
         where: {
             username: {

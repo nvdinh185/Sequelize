@@ -15,4 +15,5 @@ const User = sequelize.define('', {
 });
 
 console.log(User); // model
+console.log(sequelize.models); // { model: model }
 console.log(sequelize.models.model); // model

@@ -14,4 +14,6 @@ const User = sequelize.define('User', {
   }
 });
 
+console.log(User); // User
+console.log(sequelize.models); // { User: User }
 console.log(User === sequelize.models.User); // true

@@ -20,8 +20,9 @@ User.init({
 
 (async () => {
   await User.sync();
+  // await User.sync({ force: true });
   // Create a new user
-  const jane = await User.create({ firstName: "Jane", lastName: "Doe" });
+  const jane = await User.create({ firstName: "Jane", lastName: "Doee" });
   console.log("Jane's auto-generated ID:", jane.id);
 
   // Find all users

@@ -20,7 +20,8 @@ User.init({
 });
 
 (async () => {
-  await User.sync({ force: true });
+  await User.sync();
+  // await User.sync({ force: true });
 
   const user = await User.create({
     username: 'alice123',
